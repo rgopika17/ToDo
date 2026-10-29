@@ -1,0 +1,167 @@
+:root {
+  --bg: #0d1021;
+  --card: #161a33;
+  --card2: #1d2243;
+  --text: #eef0ff;
+  --muted: #8d93bd;
+  --edge: #2a3063;
+  --teal: #2dd4bf;
+  --amber: #fbbf24;
+  --rose: #fb7185;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: start center;
+  padding: 40px 16px;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(700px 360px at 50% -80px, rgba(45, 212, 191, 0.22), transparent),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+.sheet {
+  width: min(560px, 100%);
+  padding: 32px 28px 28px;
+  border-radius: 28px;
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.date { margin: 0 0 6px; color: var(--teal); font-weight: 700; font-size: 0.95rem; }
+h1 { margin: 0 0 18px; font-size: clamp(2.2rem, 8vw, 3rem); line-height: 1.05; font-weight: 800; letter-spacing: -0.02em; }
+
+.progress { height: 10px; border-radius: 10px; background: var(--edge); overflow: hidden; }
+#bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--teal), var(--amber)); border-radius: 10px; transition: width 0.4s ease; }
+.count { margin: 8px 0 22px; color: var(--muted); font-size: 0.95rem; }
+
+form { display: flex; gap: 10px; }
+
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 15px 18px;
+  border: 2px solid var(--edge);
+  border-radius: 16px;
+  background: #0f1330;
+  color: var(--text);
+  font: 500 1rem "Plus Jakarta Sans", system-ui, sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input::placeholder { color: #6b72a3; }
+input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.2); }
+
+.add {
+  padding: 0 22px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--teal);
+  color: #062a26;
+  font: 800 1rem "Plus Jakarta Sans", system-ui, sans-serif;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.2s, background 0.2s;
+}
+.add:hover { background: #5eead4; transform: translateY(-2px); box-shadow: 0 10px 22px rgba(45, 212, 191, 0.35); }
+.add:active { transform: scale(0.96); }
+
+.filters { display: flex; gap: 8px; margin: 22px 0 14px; }
+.chip {
+  padding: 8px 18px;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: 500 0.92rem "Plus Jakarta Sans", system-ui, sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.chip:hover { border-color: var(--teal); color: var(--text); }
+.chip.active { background: var(--teal); border-color: var(--teal); color: #062a26; font-weight: 700; }
+
+ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px 12px 18px;
+  border-radius: 16px;
+  background: var(--card2);
+  box-shadow: inset 4px 0 0 var(--c, var(--teal));
+  transition: transform 0.15s, background 0.2s;
+}
+li:hover { background: #252b57; transform: translateX(3px); }
+
+.tick {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #4a5190;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+.tick:hover { transform: scale(1.12); border-color: var(--teal); }
+.tick svg { width: 16px; height: 16px; stroke: #062a26; stroke-width: 3; fill: none; opacity: 0; transition: opacity 0.15s; }
+li.done .tick { background: var(--teal); border-color: var(--teal); }
+li.done .tick svg { opacity: 1; }
+
+.text {
+  flex: 1;
+  min-width: 0;
+  font-weight: 500;
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+  background: linear-gradient(currentColor, currentColor) no-repeat 0 58% / 0% 2px;
+  transition: background-size 0.3s ease, color 0.2s;
+}
+li.done .text { background-size: 100% 2px; color: var(--muted); }
+
+.del {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.del:hover { background: rgba(251, 113, 133, 0.18); color: var(--rose); }
+
+button:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+.empty { margin: 18px 0 0; padding: 22px; border: 2px dashed var(--edge); border-radius: 16px; text-align: center; color: var(--muted); }
+
+.clear {
+  margin-top: 18px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: 500 0.95rem "Plus Jakarta Sans", system-ui, sans-serif;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.clear:hover { color: var(--rose); }
+
+@media (max-width: 420px) {
+  .sheet { padding: 24px 18px; }
+  form { flex-direction: column; }
+  .add { padding: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="sheet">
+    <header>
+      <p class="date" id="date"></p>
+      <h1>My Tasks</h1>
+      <div class="progress" aria-hidden="true"><div id="bar"></div></div>
+      <p class="count" id="count">Nothing yet</p>
+    </header>
+
+    <form id="taskForm" autocomplete="off">
+      <input id="taskInput" type="text" placeholder="What needs doing?" maxlength="120" aria-label="New task">
+      <button type="submit" class="add">Add task</button>
+    </form>
+
+    <div class="filters" id="filters">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="active">To do</button>
+      <button class="chip" data-filter="done">Done</button>
+    </div>
+
+    <ul id="taskList"></ul>
+    <p class="empty" id="empty" hidden></p>
+
+    <button class="clear" id="clearDone" hidden>Clear completed</button>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
